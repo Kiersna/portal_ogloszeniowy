@@ -16,7 +16,7 @@
         <input type="text" placeholder="email" id="email">
         <input type="password" placeholder="twoje haslo" id="haslo">
         <input type="password" placeholder="powtorz haslo" id="powtorz_haslo"><br>
-        <label>
+        <label class='checkbox'>
             <input type="checkbox"> Akceptuje regulamin
         </label>
         <button class="g-recaptcha"
