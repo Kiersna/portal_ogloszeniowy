@@ -12,13 +12,14 @@
         <div class="hrefy">
             <a href="logowanie.html">Logowanie</a>
             <a href="rejestracja.php">Rejestracja</a>
-            <a href="dodawanie_ogloszen.html">Dodaj ogloszenie</a>
+            <a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>
         </div>
     </nav>
     <div class="search_bar">
-        <form action="">
+        <form action="strona_po_wyszukaniu.php" method="get">
             <div class="pasek">            
-                <input type="text" placeholder="szukaj..."><input type="submit" value="Szukaj">
+                <input type="text" name="query" placeholder="szukaj...">
+                <input type="submit" value="Szukaj">
             </div>
         </form>
     </div>
