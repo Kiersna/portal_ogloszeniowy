@@ -24,9 +24,9 @@
         </form>
     </div>
     <div class="oferty">
-        <p>oferta</p>    
+        <p>siemaaa</p>
     </div>
-
+    
     <footer>
         <p>Ogloszenia24</p>
     </footer>
