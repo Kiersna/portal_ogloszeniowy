@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// Sprawdzenie czy użytkownik jest zalogowany, jeśli nie, przekieruj go na stronę logowania
 if(!isset($_SESSION['username'])) {
     header("Location: logowanie.php");
     exit;
 }
 
-// Połączenie z bazą danych - należy dodać dane dostępowe do bazy danych
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -15,9 +13,8 @@ $dbname = "ogloszenia24";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Sprawdzenie czy formularz został wysłany
+
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Tutaj pobierz dane z formularza i dodaj ogłoszenie do bazy danych
     $tytul = $_POST['tytul'];
     $opis = $_POST['opis'];
     
@@ -25,7 +22,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $tytul = mysqli_real_escape_string($conn, $tytul);
     $opis = mysqli_real_escape_string($conn, $opis);
     
-    // Przykładowe zapytanie SQL dodające ogłoszenie
     $sql = "INSERT INTO ogloszenia (tytul, opis) VALUES ('$tytul', '$opis')";
     if ($conn->query($sql) === TRUE) {
         echo "Ogłoszenie dodane pomyślnie";

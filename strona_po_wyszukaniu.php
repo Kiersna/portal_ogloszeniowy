@@ -37,7 +37,7 @@
                 echo "<div class='oferta'>";
                 echo "<h2>" . $row["tytul"] . "</h2>";
                 echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
-                echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
+                echo "<img src='data:image/jpeg;base64," . base64_encode($row["zdjecie"]) . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                 echo "<p>" . $row["opis"] . "</p>";
                 echo "</div>";
             }
