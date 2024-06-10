@@ -1,40 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="logowanie_rejestracja.css">
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcgRPMpAAAAABVYEld96OO9m0KiEbfm9TgLFumD"></script>
 </head>
 <body>
     <h1>Rejestracja</h1>
     <div class="formularz">
-    <form action="" id='rejestracja_formularz'>
-        <input type="text" placeholder="Imie" id="imie">
-        <input type="text" placeholder="Nazwisko" id="nazwisko">
-        <input type="text" placeholder="email" id="email">
-        <input type="password" placeholder="twoje haslo" id="haslo">
-        <input type="password" placeholder="powtorz haslo" id="powtorz_haslo"><br>
-        <label class='checkbox'>
-            <input type="checkbox"> Akceptuje regulamin
-        </label>
-        <button class="g-recaptcha"
-            data-sitekey="6LcgRPMpAAAAABVYEld96OO9m0KiEbfm9TgLFumD"
-            data-callback='onSubmit'
-            data-action='submit'>
-            Zaloguj się
-        </button>
-    </form>
+        <form action="" id="rejestracja_formularz" method="post">
+            <input type="text" placeholder="Imię" id="imie" name="imie" required>
+            <input type="text" placeholder="Nazwisko" id="nazwisko" name="nazwisko" required>
+            <input type="email" placeholder="Email" id="email" name="email" required>
+            <input type="password" placeholder="Twoje hasło" id="haslo" name="haslo" required>
+            <input type="password" placeholder="Powtórz hasło" id="powtorz_haslo" name="powtorz_haslo" required><br>
+            <label class="checkbox">
+                <input type="checkbox" required> Akceptuję regulamin
+            </label>
+            <input type="submit" value="Zarejestruj się">
+        </form>
     </div>
     <footer>
-        <p>Ogloszenia24</p>
+        <p>Ogłoszenia24</p>
     </footer>
+    <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $imie = $_POST['imie'];
+            $nazwisko = $_POST['nazwisko'];
+            $email = $_POST['email'];
+            $haslo = $_POST['haslo'];
+            $powtorz_haslo = $_POST['powtorz_haslo'];
+
+            if ($haslo !== $powtorz_haslo) {
+                echo "Hasła nie są identyczne!";
+                exit();
+            }
+            $conn = mysqli_connect('localhost', 'root', '', 'ogloszenia24');
+            $sql = "SELECT email FROM uzytkownicy WHERE email = '$email';";
+            $ilosc_maili = mysqli_num_rows(mysqli_query($conn, $sql));
+            if($ilosc_maili > 0){
+                echo 'ten mail jest juz zarejestrowany';
+                exit();
+            }
+            $hashed_haslo = password_hash($haslo, PASSWORD_DEFAULT);
+            $sql = "INSERT INTO uzytkownicy (imie, nazwisko, email, haslo) VALUES ('$imie', '$nazwisko', '$email', '$hashed_haslo')";
+
+            if (mysqli_query($conn, $sql)) {
+                echo "Rejestracja zakończona sukcesem!";
+            } else {
+                echo "Błąd: " . mysqli_error($conn);
+            }
+
+            mysqli_close($conn);
+        }
+    ?>
 </body>
-<!-- Replace the variables below. -->
-<script>
-  function onSubmit(token) {
-    document.getElementById("rejestracja_formularz").submit();
-  }
-</script>
 </html>
