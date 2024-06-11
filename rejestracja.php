@@ -7,9 +7,25 @@
     <link rel="stylesheet" href="logowanie_rejestracja.css">
 </head>
 <body>
-    <h1>Rejestracja</h1>
+    <nav>
+        <a href="strona_glowna.php" class="napis">Ogloszenia24</a>
+        <div class="hrefy">
+            <?php
+                session_start();
+
+                if(isset($_SESSION['username'])) {
+                    echo '<a href="wyloguj.php">Wyloguj</a>';
+                    echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
+                }else{
+                    echo '<a href="logowanie.php">Logowanie</a>';
+                    echo '<a href="rejestracja.php">Rejestracja</a>';
+                }
+            ?>
+        </div>
+    </nav>
     <div class="formularz">
         <form action="" id="rejestracja_formularz" method="post">
+        <h1>Rejestracja</h1>
             <input type="text" placeholder="Imię" id="imie" name="imie" required>
             <input type="text" placeholder="Nazwisko" id="nazwisko" name="nazwisko" required>
             <input type="email" placeholder="Email" id="email" name="email" required>
