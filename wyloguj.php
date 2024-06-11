@@ -1,4 +1,3 @@
-<!--plik wyloguj.php  -->
 <?php
     session_start();
     session_unset();

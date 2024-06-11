@@ -25,7 +25,6 @@
     </nav>
 
     <?php
-    // Połączenie z bazą danych
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -33,21 +32,18 @@
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Sprawdzenie połączenia
+
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Pobranie tytułu z formularza
+
     if(isset($_GET['query'])) {
         $query = $_GET['query'];
-
-        // Zapytanie do bazy danych
         $sql = "SELECT * FROM oferty WHERE tytul LIKE '%$query%'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            // Wyświetlenie ofert
             while($row = $result->fetch_assoc()) {
                 echo "<div class='oferta'>";
                 echo "<h2>" . $row["tytul"] . "</h2>";
@@ -61,7 +57,6 @@
         }
     }
 
-    // Zamknięcie połączenia
     $conn->close();
     ?>
 </body>
