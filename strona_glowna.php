@@ -8,23 +8,69 @@
 </head>
 <body>
     <nav>
-        <p class="napis">Ogloszenia24</p>
+        <a href="strona_glowna.php" class="napis">Ogloszenia24</a>
         <div class="hrefy">
-            <a href="logowanie.html">Logowanie</a>
+            <a href="logowanie.php">Logowanie</a>
             <a href="rejestracja.php">Rejestracja</a>
             <a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>
         </div>
     </nav>
     <div class="search_bar">
-        <form action="strona_po_wyszukaniu.php" method="get">
+        <form action="strona_glowna.php" method="get">
             <div class="pasek">            
-                <input type="text" name="query" placeholder="szukaj...">
+                <input type="text" name="query" placeholder="szukaj..." required>
                 <input type="submit" value="Szukaj">
             </div>
         </form>
     </div>
     <div class="oferty">
-        <p>siemaaa</p>
+        <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "ogloszenia24";
+        
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['query'])) {
+                $query = $_GET['query'];
+
+                // Zapytanie do bazy danych
+                $sql = "SELECT * FROM oferty WHERE tytul LIKE '%$query%'";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // Wyświetlenie ofert
+                    while($row = $result->fetch_assoc()) {
+                        echo "<div class='oferta'>";
+                        echo "<h2>" . $row["tytul"] . "</h2>";
+                        echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
+                        echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
+                        echo "<p>" . $row["opis"] . "</p>";
+                        echo "</div>";
+                    }
+                } else {
+                    echo "<p>Brak wyników wyszukiwania.</p>";
+                }
+    
+            } else {
+                $sql = "SELECT * FROM oferty";
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()) {
+                    echo "<div class='oferta'>";
+                    echo "<h2>" . $row["tytul"] . "</h2>";
+                    echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
+                    echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
+                    echo "<p>" . $row["opis"] . "</p>";
+                    echo "</div>";
+                }
+            }
+
+            $conn->close();
+        ?>
     </div>
     
     <footer>

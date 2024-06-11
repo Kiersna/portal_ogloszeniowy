@@ -44,7 +44,7 @@
                 exit();
             }
             $hashed_haslo = password_hash($haslo, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO uzytkownicy (imie, nazwisko, email, haslo) VALUES ('$imie', '$nazwisko', '$email', '$hashed_haslo')";
+            $sql = "INSERT INTO uzytkownicy (Imie, Nazwisko, email, haslo) VALUES ('$imie', '$nazwisko', '$email', '$hashed_haslo')";
 
             if (mysqli_query($conn, $sql)) {
                 echo "Rejestracja zakończona sukcesem!";

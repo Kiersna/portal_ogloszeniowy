@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyniki wyszukiwania</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="strona_po_wyszukiwaniu.css">
 </head>
 <body>
-    <h1>Wyniki wyszukiwania</h1>
-    
+    <nav>
+        <p class="napis">Ogloszenia24</p>
+        <div class="hrefy">
+            <a href="logowanie.php">Logowanie</a>
+            <a href="rejestracja.php">Rejestracja</a>
+            <a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>
+        </div>
+    </nav>
+
     <?php
     // Połączenie z bazą danych
     $servername = "localhost";
@@ -37,7 +44,7 @@
                 echo "<div class='oferta'>";
                 echo "<h2>" . $row["tytul"] . "</h2>";
                 echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
-                echo "<img src='data:image/jpeg;base64," . base64_encode($row["zdjecie"]) . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
+                echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                 echo "<p>" . $row["opis"] . "</p>";
                 echo "</div>";
             }
