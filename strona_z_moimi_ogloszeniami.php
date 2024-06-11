@@ -24,14 +24,6 @@
             ?>
         </div>
     </nav>
-    <div class="search_bar">
-        <form action="strona_glowna.php" method="get">
-            <div class="pasek">            
-                <input type="text" name="query" placeholder="Szukaj..." required>
-                <input type="submit" value="Szukaj">
-            </div>
-        </form>
-    </div>
     <div class="oferty">
         <?php
             $servername = "localhost";
@@ -43,38 +35,29 @@
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
+            
+            $email = $_SESSION['username'];
+            $sql = "SELECT id FROM uzytkownicy WHERE email = '$email'";
+            $result = $conn->query($sql);
+            $row = $result->fetch_assoc();
+            $id = $row['id'];
 
-            if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['query'])) {
-                $query = $_GET['query'];
+            $sql = "SELECT * FROM oferty WHERE id_uzytkownika = '$id'";
+            $result = $conn->query($sql);
 
-                // Zapytanie do bazy danych
-                $sql = "SELECT * FROM oferty WHERE tytul LIKE '%$query%'";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<div class='oferta'>";
-                        echo "<h2>" . $row["tytul"] . "</h2>";
-                        echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
-                        echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
-                        echo "<p>" . $row["opis"] . "</p>";
-                        echo "</div>";
-                    }
-                } else {
-                    echo "<p>Brak wyników wyszukiwania.</p>";
-                }
-    
-            } else {
-                $sql = "SELECT * FROM oferty";
-                $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                     echo "<div class='oferta'>";
                     echo "<h2>" . $row["tytul"] . "</h2>";
                     echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
                     echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                     echo "<p>" . $row["opis"] . "</p>";
+                    echo "<a href='edytowanie_ogloszenia.php?id=" . $row['id'] . "'>Edytuj</a> | ";
+                    echo "<a href='usuniecie_ogloszenia.php?id=" . $row['id'] . "' onclick='return confirm(\"Czy na pewno chcesz usunąć to ogłoszenie?\");'>Usuń</a>";
                     echo "</div>";
                 }
+            } else {
+                echo "<p>Nie dodales zadnej oferty.</p>";
             }
 
             $conn->close();

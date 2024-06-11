@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --kolor1: #7466e1;
+  --kolor2: #221e3b;
+  --kolor3: #d2d2d6;
+  --kolor4: #b1afc4;
+  --kolor5: #272536;
+  --kolor6: #7568d6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--kolor4), var(--kolor1));
+  color: white;
+  font-size: 16px;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--kolor2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 19px;
+}
+
+.hrefy {
+  display: flex;
+  gap: 15px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+a:hover {
+  background-color: var(--kolor1);
+  border-radius: 5px;
+  transform: scale(1.05);
+}
+
+.napis {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.formularz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--kolor2);
+  width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  gap: 20px;
+}
+
+form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.inputy {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input,
+form textarea {
+  width: 350px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+form input[type="submit"] {
+  background-color: var(--kolor1);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background-color: var(--kolor6);
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--kolor2);
+  color: white;
+  padding: 20px;
+  font-size: 16px;
+}

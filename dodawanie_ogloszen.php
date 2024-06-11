@@ -12,7 +12,11 @@ $password = "";
 $dbname = "ogloszenia24";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
-
+$email = $_SESSION['username'];
+$sql = "SELECT id FROM uzytkownicy WHERE email = '$email'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$id = $row['id'];
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $tytul = $_POST['tytul'];
@@ -24,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $tytul = mysqli_real_escape_string($conn, $tytul);
     $opis = mysqli_real_escape_string($conn, $opis);
     
-    $sql = "INSERT INTO oferty (tytul, opis, zdjecie_url, cena) VALUES ('$tytul', '$opis', '$zdjecie_url', '$cena')";
+    $sql = "INSERT INTO oferty (tytul, opis, zdjecie_url, cena, id_uzytkownika) VALUES ('$tytul', '$opis', '$zdjecie_url', '$cena', '$id')";
     if ($conn->query($sql) === TRUE) {
         echo "Ogłoszenie dodane pomyślnie";
     } else {
@@ -39,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodawanie ogłoszenia</title>
-    <link rel="stylesheet" href="dodawanie_ogloszen.css">
+    <link rel="stylesheet" href="dodawanie_ogloszen2.css">
 </head>
 <body>
 <nav>
