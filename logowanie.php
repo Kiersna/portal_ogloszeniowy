@@ -9,7 +9,7 @@ $dbname = "ogloszenia24";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if(isset($_SESSION['username'])) {
-    header("Location: dodawanie_ogloszen.php");
+    header("Location: strona_glowna.php");
     exit;
 }
 
@@ -29,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['haslo'])) {
             $_SESSION['username'] = $username;
-            header("Location: dodawanie_ogloszen.php");
+            header("Location: strona_glowna.php");
             exit;
         } else {
             echo "Błędne dane logowania";
@@ -48,6 +48,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Logowanie</title>
 </head>
 <body>
+    <nav>
+        <a href="strona_glowna.php" class="napis">Ogloszenia24</a>
+        <div class="hrefy">
+            <?php
+
+
+                if(isset($_SESSION['username'])) {
+                    echo '<a href="wyloguj.php">Wyloguj</a>';
+                    echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
+                }else{
+                    echo '<a href="logowanie.php">Logowanie</a>';
+                    echo '<a href="rejestracja.php">Rejestracja</a>';
+                }
+            ?>
+        </div>
+    </nav>
     <h2>Logowanie</h2>
     <form method="post">
         <div>

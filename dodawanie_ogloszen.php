@@ -17,12 +17,14 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $tytul = $_POST['tytul'];
     $opis = $_POST['opis'];
+    $zdjecie_url = $_POST['zdjecie'];
+    $cena = $_POST['cena'];
     
     // Zabezpieczenie przed SQL Injection
     $tytul = mysqli_real_escape_string($conn, $tytul);
     $opis = mysqli_real_escape_string($conn, $opis);
     
-    $sql = "INSERT INTO ogloszenia (tytul, opis) VALUES ('$tytul', '$opis')";
+    $sql = "INSERT INTO oferty (tytul, opis, zdjecie_url, cena) VALUES ('$tytul', '$opis', '$zdjecie_url', '$cena')";
     if ($conn->query($sql) === TRUE) {
         echo "Ogłoszenie dodane pomyślnie";
     } else {
@@ -37,18 +39,36 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodawanie ogłoszenia</title>
-    <link rel="stylesheet" href="logowanie_rejestracja.css">
+    <link rel="stylesheet" href="dodawanie_ogloszen.css">
 </head>
 <body>
-    <h1>Dodawanie ogłoszenia</h1>
+<nav>
+        <a href="strona_glowna.php" class="napis">Ogloszenia24</a>
+        <div class="hrefy">
+            <?php
+
+
+                if(isset($_SESSION['username'])) {
+                    echo '<a href="wyloguj.php">Wyloguj</a>';
+                    echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
+                }else{
+                    echo '<a href="logowanie.php">Logowanie</a>';
+                    echo '<a href="rejestracja.php">Rejestracja</a>';
+                }
+            ?>
+        </div>
+    </nav>
+    
     <div class="formularz">
+
         <form action="dodawanie_ogloszen.php" id="ogloszenie_formularz" method="post">
-            <!-- Tutaj umieść pola formularza do dodawania ogłoszenia -->
+            <h1>Dodawanie ogłoszenia</h1>
+            <div class="inputy">
             <input type="text" placeholder="Tytuł" id="tytul" name="tytul" required>
             <textarea placeholder="Opis" id="opis" name="opis" required></textarea>
-            <!-- Dodaj inne pola formularza, jeśli są potrzebne -->
-
-            <input type="submit" value="Dodaj ogłoszenie">
+            <input type="text" name="zdjecie" id="zdjecie" placeholder="url do zdjecia">
+            <input type="number" name="cena" id="cena" placeholder='cena'>
+            <input type="submit" value="Dodaj ogłoszenie"></div>
         </form>
     </div>
     <footer>

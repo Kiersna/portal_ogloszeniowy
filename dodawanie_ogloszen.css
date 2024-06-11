@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --kolor1: #7466e1;
+  --kolor2: #221e3b;
+  --kolor3: #d2d2d6;
+  --kolor4: #b1afc4;
+  --kolor5: #272536;
+  --kolor6: #7568d6;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--kolor2);
+  color: white;
+}
+.hrefy {
+  width: 100%;
+  text-align: right;
+  padding-right: 50px;
+}
+a {
+  text-decoration: none;
+  padding: 15px;
+  color: inherit;
+}
+.napis {
+  padding: 0;
+  padding-left: 40px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 19px;
+  background-color: var(--kolor4);
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--kolor1);
+  width: 400px;
+  height: 450px;
+  text-align: center;
+  border: 10px solid black;
+  border-radius: 40px;
+  margin: 20px;
+  gap: 30px;
+}
+.formularz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+}
+form input,
+textarea {
+  background-color: white;
+  width: 300px;
+  padding: 10px;
+  margin: 8px;
+  border: none;
+  border-radius: 10px;
+}
+footer {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--kolor2);
+  color: white;
+  justify-content: center;
+}
+.inputy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

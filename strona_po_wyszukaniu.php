@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="strona_po_wyszukiwaniu.css">
 </head>
 <body>
-    <nav>
-        <p class="napis">Ogloszenia24</p>
+<nav>
+        <a href="strona_glowna.php" class="napis">Ogloszenia24</a>
         <div class="hrefy">
-            <a href="logowanie.php">Logowanie</a>
-            <a href="rejestracja.php">Rejestracja</a>
-            <a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>
+            <?php
+                session_start();
+
+                if(isset($_SESSION['username'])) {
+                    echo '<a href="wyloguj.php">Wyloguj</a>';
+                    echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
+                }else{
+                    echo '<a href="logowanie.php">Logowanie</a>';
+                    echo '<a href="rejestracja.php">Rejestracja</a>';
+                }
+            ?>
         </div>
     </nav>
 
