@@ -1,6 +1,5 @@
-<!--plik strona_glowna.php  -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,7 @@
                 if(isset($_SESSION['username'])) {
                     echo '<a href="wyloguj.php">Wyloguj</a>';
                     echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
-                }else{
+                } else {
                     echo '<a href="logowanie.php">Logowanie</a>';
                     echo '<a href="rejestracja.php">Rejestracja</a>';
                 }
@@ -27,7 +26,7 @@
     <div class="search_bar">
         <form action="strona_glowna.php" method="get">
             <div class="pasek">            
-                <input type="text" name="query" placeholder="szukaj..." required>
+                <input type="text" name="query" placeholder="Szukaj..." required>
                 <input type="submit" value="Szukaj">
             </div>
         </form>
@@ -52,7 +51,6 @@
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-                    // Wyświetlenie ofert
                     while($row = $result->fetch_assoc()) {
                         echo "<div class='oferta'>";
                         echo "<h2>" . $row["tytul"] . "</h2>";

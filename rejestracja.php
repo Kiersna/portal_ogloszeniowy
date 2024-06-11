@@ -52,6 +52,10 @@
                 echo "Hasła nie są identyczne!";
                 exit();
             }
+            if (strlen($haslo) < 8){
+                echo 'Hasło jest za krótkie, musi zawierać przynajmniej 8 znaków';
+                exit();
+            }
             $conn = mysqli_connect('localhost', 'root', '', 'ogloszenia24');
             $sql = "SELECT email FROM uzytkownicy WHERE email = '$email';";
             $ilosc_maili = mysqli_num_rows(mysqli_query($conn, $sql));
