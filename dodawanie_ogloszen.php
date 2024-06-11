@@ -53,8 +53,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                 if(isset($_SESSION['username'])) {
-                    echo '<a href="wyloguj.php">Wyloguj</a>';
                     echo '<a href="dodawanie_ogloszen.php">Dodaj ogloszenie</a>';
+                    echo '<a href="strona_z_moimi_ogloszeniami.php">Moje ogloszenia</a>';
+                    echo '<a href="wyloguj.php">Wyloguj</a>';
                 }else{
                     echo '<a href="logowanie.php">Logowanie</a>';
                     echo '<a href="rejestracja.php">Rejestracja</a>';
