@@ -23,12 +23,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $opis = $_POST['opis'];
     $zdjecie_url = $_POST['zdjecie'];
     $cena = $_POST['cena'];
+
+    date_default_timezone_set('Europe/Warsaw');
+    $aktualny_dzien = date('Y-m-d H:i:s');
     
-    // Zabezpieczenie przed SQL Injection
-    $tytul = mysqli_real_escape_string($conn, $tytul);
-    $opis = mysqli_real_escape_string($conn, $opis);
-    
-    $sql = "INSERT INTO oferty (tytul, opis, zdjecie_url, cena, id_uzytkownika) VALUES ('$tytul', '$opis', '$zdjecie_url', '$cena', '$id')";
+    $sql = "INSERT INTO oferty (tytul, opis, zdjecie_url, cena, id_uzytkownika, data_utworzenia) VALUES ('$tytul', '$opis', '$zdjecie_url', '$cena', '$id', '$aktualny_dzien')";
     if ($conn->query($sql) === TRUE) {
         echo "Ogłoszenie dodane pomyślnie";
     } else {

@@ -58,6 +58,7 @@
                         echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
                         echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                         echo "<p>" . $row["opis"] . "</p>";
+                        echo "<p><strong>Oferta wrzucona: </strong>" . $row["data_utworzenia"] . "</p>";
                         echo "</div>";
                     }
                 } else {
@@ -73,6 +74,7 @@
                     echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
                     echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                     echo "<p>" . $row["opis"] . "</p>";
+                    echo "<p><strong>Oferta wrzucona: </strong>" . $row["data_utworzenia"] . "</p>";
                     echo "</div>";
                 }
             }

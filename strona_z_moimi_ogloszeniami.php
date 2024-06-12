@@ -52,6 +52,7 @@
                     echo "<p><strong>Cena: </strong>" . $row["cena"] . " PLN</p>";
                     echo "<img src='" . $row["zdjecie_url"] . "' alt='" . $row["tytul"] . "' style='max-width: 200px;'>";
                     echo "<p>" . $row["opis"] . "</p>";
+                    echo "<p><strong>Oferta wrzucona: </strong>" . $row["data_utworzenia"] . "</p>";
                     echo "<div class='edycje'>";
                     echo "<a href='edytowanie_ogloszenia.php?id=" . $row['id'] . "'>Edytuj</a> ";
                     echo "<a href='usuniecie_ogloszenia.php?id=" . $row['id'] . "' onclick='return confirm(\"Czy na pewno chcesz usunąć to ogłoszenie?\");'>Usuń</a>";
