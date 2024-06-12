@@ -30,6 +30,7 @@
             <input type="text" placeholder="Nazwisko" id="nazwisko" name="nazwisko" required>
             <input type="email" placeholder="Email" id="email" name="email" required>
             <input type="password" placeholder="Twoje hasło" id="haslo" name="haslo" required>
+            <p>Haslo musi zawierac 8 znakow w tym mala litere, duza litere, cyfre i znak specjalny</p>
             <input type="password" placeholder="Powtórz hasło" id="powtorz_haslo" name="powtorz_haslo" required><br>
             <label class="checkbox">
                 <input type="checkbox" required> Akceptuję regulamin
@@ -52,8 +53,24 @@
                 echo "Hasła nie są identyczne!";
                 exit();
             }
-            if (strlen($haslo) < 8){
+            if (strlen($haslo) < 8) {
                 echo 'Hasło jest za krótkie, musi zawierać przynajmniej 8 znaków';
+                exit();
+            }
+            if (!preg_match('/[A-Z]/', $haslo)) {
+                echo 'Hasło musi zawierać przynajmniej jedną wielką literę';
+                exit();
+            }
+            if (!preg_match('/[a-z]/', $haslo)) {
+                echo 'Hasło musi zawierać przynajmniej jedną małą literę';
+                exit();
+            }
+            if (!preg_match('/\d/', $haslo)) {
+                echo 'Hasło musi zawierać przynajmniej jedną cyfrę';
+                exit();
+            }
+            if (!preg_match('/[\W_]/', $haslo)) {
+                echo 'Hasło musi zawierać przynajmniej jeden znak specjalny';
                 exit();
             }
             $conn = mysqli_connect('localhost', 'root', '', 'ogloszenia24');
